@@ -43,8 +43,12 @@ gsutil acl ch -u $IAM_SQL_ACCOUNT_FULL_NAME:R gs://$PROJECT_UNIQUE_PREFIX-sqlbac
 gcloud sql import sql $SQL_INSTANCE_NAME gs://$PROJECT_UNIQUE_PREFIX-sqlbackup/backup.sql.gz --database=$SQL_DATABASE_NAME -q
 gsutil rm -r gs://$PROJECT_UNIQUE_PREFIX-sqlbackup
 
-echo "-----------------------------------"
+echo "--------------------------------------"
 echo "SQL Password is: $SQL_ROOT_PASSWORD"
-echo "Execute command to grant permissions: grant SELECT, INSERT, UPDATE, DELETE on WINELIST to \"$IAM_COMPUTE_ACCOUNT\";"
-gcloud sql connect $SQL_INSTANCE_NAME --user=postgres
+echo ""
+echo "Execute commands to grant permissions: "
+echo ""
+echo "gcloud sql connect $SQL_INSTANCE_NAME --user=postgres"
+echo "grant SELECT, INSERT, UPDATE, DELETE on WINELIST to \"$IAM_COMPUTE_ACCOUNT\";"
+
  
