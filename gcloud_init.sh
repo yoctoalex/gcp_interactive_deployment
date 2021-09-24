@@ -17,7 +17,6 @@ PROJECT_UNIQUE_PREFIX=$(tr -dc a-z0-9 </dev/urandom | head -c 20 ; echo '')
 echo "Creating Cloud SQL database"
 # create database
 gcloud beta sql instances create $SQL_INSTANCE_NAME \
-    --no-assign-ip \
     --network=$VPC_NETWORK_NAME \
     --database-version=POSTGRES_13 \
     --cpu=4 \
