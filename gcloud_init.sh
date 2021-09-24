@@ -8,6 +8,7 @@ gcloud services enable sqladmin.googleapis.com
 # set env variables
 ZONE_NAME=us-central1-a
 PROJECT_ID=$(gcloud info --format="value(config.project)")
+VPC_NETWORK_NAME=$(gcloud compute networks list --limit=1 --format="value(NAME)")
 SQL_INSTANCE_NAME=sqldatabase
 SQL_DATABASE_NAME=postgres
 SQL_ROOT_PASSWORD=example
@@ -17,6 +18,7 @@ echo "Creating Cloud SQL database"
 # create database
 gcloud sql instances create $SQL_INSTANCE_NAME \
     --no-assign-ip \
+    --network=$VPC_NETWORK_NAME \
     --database-version=POSTGRES_13 \
     --cpu=4 \
     --memory=26GB \
